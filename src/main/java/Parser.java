@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.*;
 
-public class Parser {
+public class Parser{
     static List<Country> countries = new ArrayList<>();
 
 
@@ -17,7 +17,7 @@ public class Parser {
         // Sort countries alphabetically (least)
         //TODO
 
-        Collections.sort(sortedByName, new Comparator<Country>() {
+        Collections.sort(sortedByName, new Comparator<>() {
             @Override
             public int compare(Country country1, Country country2) {
                 return country1.getName().compareTo(country2.getName());
@@ -27,7 +27,7 @@ public class Parser {
 
     }
 
-    public List<Country> sortByPopulation() {
+    public static List<Country> sortByPopulation() {
         List<Country> sortedByPopulation = new ArrayList<>(countries);
         // Sort countries by population (most)
         //TODO
@@ -41,7 +41,7 @@ public class Parser {
         return sortedByPopulation;
     }
 
-    public List<Country> sortByArea() {
+    public static List<Country> sortByArea() {
         List<Country> sortedByArea = new ArrayList<>(countries);
         // Sort countries by area (most)
         //TODO
@@ -53,6 +53,19 @@ public class Parser {
             }
         });
         return sortedByArea;
+    }
+    public static List<Country> sortByCapital() {
+        List<Country> sortByCapital = new ArrayList<>(countries);
+        // Sort countries by area (most)
+        //TODO
+
+        Collections.sort(sortByCapital, new Comparator<Country>() {
+            @Override
+            public int compare(Country country1, Country country2) {
+                return country1.getCapital().compareTo(country2.getCapital());
+            }
+        });
+        return sortByCapital;
     }
 
     public static void setUp() throws IOException {
@@ -83,13 +96,21 @@ public class Parser {
     //TODO
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main (String[] args) throws IOException {
         //you can test your code here before you run the unit tests ;)
         setUp();
-
-
-
-
+        for (Country country : sortByName()){
+            System.out.println(country.getName());
+        }
+        for (Country country : sortByArea()){
+            System.out.println(country.getArea());
+        }
+        for (Country country : sortByCapital()){
+            System.out.println(country.getCapital());
+        }
+        for (Country country : sortByPopulation()){
+            System.out.println(country.getPopulation());
+        }
 
     }
 }
